@@ -32,8 +32,9 @@ class KnightPathFinder
       parent = queue.shift
       child_pos = new_move_position(parent.value)
       child_pos.each do |pos|
-        child = PolyTreeNode.new(pos)
-        child.parent = parent
+        orphan = PolyTreeNode.new(pos)
+        orphan.parent = parent
+        child = orphan
         queue << child
         #p "#{queue.map{|node| node.value }}"
       end
