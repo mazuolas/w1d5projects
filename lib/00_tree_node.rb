@@ -18,4 +18,31 @@ class PolyTreeNode
     @children << child unless @children.include?(child)
     child.parent = self
   end
+
+  def remove_child(child)
+    raise "you're not my child" unless @children.include?(child)
+    @children.delete(child)
+    child.parent = nil
+  end
+
+  def dfs(search)
+    return self if search == self.value
+
+    @children.each do |child|
+      c = child.dfs(search)
+      return c unless c.nil?
+    end
+
+    nil
+  end
+
+  def bfs(search)
+    queue = [self]
+    until queue.empty?
+      current_search = queue.shift
+      return current_search if search == current_search.value
+      queue += current_search.children
+    end
+    nil
+  end
 end
