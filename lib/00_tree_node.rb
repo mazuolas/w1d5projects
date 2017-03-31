@@ -45,4 +45,6 @@ class PolyTreeNode
     end
     nil
   end
+
+  # TODO add orphan method
 end
